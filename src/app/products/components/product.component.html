@@ -1,0 +1,40 @@
+<div class="container my-5">
+    <h2>Listado productos!</h2>
+    <div class="row">
+        <div class="col">
+            <!-- metodo para agregar los nuevos productos -->
+            <!-- [product] = "productSelected" - se pasa la informacion del hija al padre -->
+            <product-form (newProductEvent)="addProduct($event)" [product] = "productSelected"></product-form>
+        </div>
+        <div class="col">
+            @if (products.length > 0) {
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>nombre</th>
+                            <th>descripcion</th>
+                            <th>precio</th>
+                            <th>Actualizar</th>
+                            <th>Eliminar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (product of products; track $index) {
+                            <tr>
+                                <td>{{product.id}}</td>
+                                <td>{{product.name}}</td>
+                                <td>{{product.description}}</td>
+                                <td>{{product.price}}</td>
+                                <td><button (click)="onUpdateProduct(product)" class="btn btn-sm btn-secondary">Actualizar</button></td>
+                                <td><button (click)="onRemoveProduct(product.id)" class="btn btn-sm btn-danger">Eliminar</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }@else {
+                <div class="alert alert-info">Lo siento no hay registro en el sistema</div>
+            }
+        </div>
+    </div>
+</div>

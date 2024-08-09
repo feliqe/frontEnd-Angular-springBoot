@@ -1,0 +1,90 @@
+<!--  #productForm="ngForm" -  alias revisara si tiene informacion el fomrulario si no realizra el bloqueo del boton de crear -->
+<form (ngSubmit)="onSubmit()" #productForm="ngForm">
+    <div>
+        <input
+        type="text"
+        class="form-control my-2"
+        placeholder="nombre" name="name"
+        [(ngModel)]="product.name"
+        #name="ngModel"
+        required
+        minlength="5"
+        >
+        <!-- validamos que el campo se oblogatorio -->
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger">
+            <!-- valida si hay error para mostra el mensaje -->
+            @if (name.errors!['required']) {
+                <div>
+                    El nombre es obligatorio!
+                </div>
+            }
+             <!-- valida si el campo es mayor que el minimo definido en el input -->
+             @if (name.errors!['minlength']) {
+                <div>
+                    El nombre tiene que tener minimo de 5 caracteres!
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <input
+        type="text"
+        class="form-control my-2"
+        placeholder="Descripcion"
+        name="description"
+        [(ngModel)]="product.description"
+        #description="ngModel"
+        required
+        >
+        <!-- validamos que el campo se oblogatorio -->
+        <div *ngIf="description.invalid && (description.dirty || description.touched)" class="text-danger">
+            <!-- valida si hay error para mostra el mensaje -->
+            @if (description.errors!['required']) {
+                <div>
+                    El descripcion es obligatorio!
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <input
+        type="text"
+        class="form-control my-2"
+        placeholder="precio"
+        name="price"
+        [(ngModel)]="product.price"
+        #price="ngModel"
+        required
+        min="5"
+        >
+        <!-- validamos que el campo se oblogatorio -->
+        <div *ngIf="price.invalid && (price.dirty || price.touched)" class="alert alert-danger">
+            <!-- valida si hay error para mostra el mensaje -->
+            @if (price.errors!['required']) {
+                <div>
+                    El precio es obligatorio!
+                </div>
+            }
+            <!-- valida si el campo es mayor que el minimo definido en el input -->
+            @if (price.errors!['min']) {
+                <div>
+                    El precio tiene que ser mayor que 5!
+                </div>
+            }
+        </div>
+    </div>
+    <div>
+        <button
+            [disabled]="!productForm.form.valid"
+            type="submit"
+            class="btn btn-primary my-2">
+            {{product.id > 0? 'Update': 'Create'}}
+        </button>
+        <button
+            type="button"
+            class="btn btn-success my-2 mx-2"
+            (click)="clean()">
+            Limpiar
+        </button>
+    </div>
+</form>
