@@ -1,27 +1,51 @@
-# AngularApp
+## Angular App front end - springBoot
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+- Se menaje por componente secundarios de métodos y componente principales de rutas
+------------------------------------------------------------------------------------------------
+package de vs code
 
-## Development server
+    * Angular Language Service
+    * Angular Snippets (Version 18)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+------------------------------------------------------------------------------------------------
+Crear proyecto
 
-## Code scaffolding
+- este comando es de unica vez para usuarios de windows
+    - Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+- este comanod es de unica vez es para instalr Angular por primera vez
+    - npm install -g @angular/cli@17
+    - revisar la Version
+        - ng version
+- comando para genera aplicacion de angular
+    - ng new "nombre de proyecto"
+        - selecionamos en la ejecucion
+            - css
+            - consultara si deseamos correo por el lado del servidor del cliente o del servidor (si se desea correo en el lado del servidor de cliente se coloca que NO)
+- para correr el servidor se ejecuta el comando
+    - ng serve
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+------------------------------------------------------------------------------------------------
+Explicación
 
-## Build
+- .html : es donde está el contenido
+- .ts : para crear funciones y manejo de procesos
+- en ProductComponent.ts se indica la asociación entre componente y servicio
+- en ProductService.ts se asocia los datos de la base de datos
+- el Observable observa los datos a cada segundo para peticiones
+- en component product.component.html donde definimos el contenido de la pagina
+- ProductComponent (padre) // FormComponent (hijo) // product.component.html (vista)
+- en product.service.ts es donde se realiza la configuración del model y la asociación con le backEnd de springBoot
+- en appConfig.ts se cargan los componentes necesarios de rutas para la asociación con el backEnd
+- en product.service.ts se crear las funciones de crud  incluido en springBoot
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+------------------------------------------------------------------------------------------------
+Archivos
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- para crear carpeta con los componentes de angular se ejecuta por la terminal, se define el nombre de inicio y termino, ejemplo (products)
+    - ng generate component products/components/product
+- para crear carpeta de service es igual que a componente como el siguiente ejemplo
+    - ng generate service products/services/product
+- se crear la carpeta models en products
+- se crear el archivo product.ts en models
+- para crear carpeta de form es igual que a componente como el siguiente ejemplo
+    - ng generate components products/components/form
